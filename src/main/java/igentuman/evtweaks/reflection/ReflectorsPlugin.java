@@ -20,8 +20,9 @@ public class ReflectorsPlugin extends Reflectors.FMLLoadingPluginAdapter
 
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
-        if (transformedName.equals("net.minecraft.inventory.Container")) {
-            //return Reflectors.reflectClass(basicClass, transformedName, ContainerRepairReflector.class.getName());
+        //rotations
+        if (transformedName.equals("mysticalmechanics.tileentity.TileEntityAxle")) {
+            return Reflectors.reflectClass(basicClass, transformedName, TileEntityAxleReflection.class.getName());
         }
         return basicClass;
     }

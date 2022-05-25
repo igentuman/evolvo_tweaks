@@ -13,5 +13,6 @@ public final class ModInfo {
       + "required-after:jei;"
       + "required-after:crafttweaker;"
       + "required-after:mtlib;"
+      + "required-after:mysticalmechanics;"
       + "required-after:immersiveengineering;";
 }

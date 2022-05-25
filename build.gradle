@@ -1,0 +1,105 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = "${mc_version}-${mod_version}"
+group = "igentuman.evtweaks"
+archivesBaseName = "evolvo_tweaks"
+
+sourceCompatibility = targetCompatibility = "1.8"
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.8"
+    options.encoding = 'UTF-8'
+}
+
+minecraft {
+    version = "${mc_version}-${forge_version}"
+    runDir = "run"
+    replace "@VERSION@", "${mod_version}"
+    mappings = "${mapping_version}"
+    makeObfSourceJar = true
+}
+
+configurations {
+    shade
+    compile.extendsFrom(shade)
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url 'https://minecraft.curseforge.com/api/maven/'
+    }
+    maven {url "http://maven.blamejared.com"}
+    maven {url "http://dvs1.progwml6.com/files/maven"}
+    maven {
+        url 'https://jitpack.io'
+    }
+    maven {
+        url = "https://www.cursemaven.com"
+    }
+    maven {
+        name = "mcmoddev"
+        url = "https://maven.mcmoddev.com"
+    }
+    maven {
+        name = "ModMaven"
+        url = "https://modmaven.dev/"
+    }
+}
+
+dependencies {
+    shade "com.github.MJaroslav.Reflectors:library:v4"
+    deobfCompile "mekanism:Mekanism:${mekanism_version}"
+    deobfCompile "curse.maven:mysticalmechanics-300742:3006392"
+    deobfCompile "curse.maven:applied-energistics-2-223794:2747063"
+    deobfCompile "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
+    deobfCompile "curse.maven:immersive-engineering-231951:2974106"
+    deobfProvided "CraftTweaker2:CraftTweaker2-API:${ct_version}"
+    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-${ct_version}"
+    deobfProvided "com.blamejared:MTLib:${mtlib_version}"
+    runtime "com.blamejared:MTLib:${mtlib_version}"
+    deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    implementation "mezz.jei:jei_${mc_version}:${jei_version}"
+    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mc_version", project.mc_version
+
+    rename '(.+_at.cfg)', 'META-INF/$1'
+}
+
+jar {
+    configurations.shade.each { dep ->
+        from project.zipTree(dep)
+    }
+    manifest {
+        attributes([
+                "Specification-Title": "evolvo-tweaks",
+                "Specification-Vendor": "igentuman",
+                "Specification-Version": "1",
+                "Implementation-Title": project.name,
+                "Implementation-Version": "${version}",
+                "Implementation-Vendor" : "igentuman",
+                "FMLAT": "evolvo_at.cfg",
+                "FMLCorePlugin": "igentuman.evtweaks.reflection.ReflectorsPlugin",
+                "FMLCorePluginContainsFMLMod": "true",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')

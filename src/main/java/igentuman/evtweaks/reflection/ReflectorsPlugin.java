@@ -24,6 +24,11 @@ public class ReflectorsPlugin extends Reflectors.FMLLoadingPluginAdapter
         if (transformedName.equals("mysticalmechanics.tileentity.TileEntityAxle")) {
             return Reflectors.reflectClass(basicClass, transformedName, TileEntityAxleReflection.class.getName());
         }
+
+        if (transformedName.equals("appeng.tile.crafting.TileMolecularAssembler")) {
+            return Reflectors.reflectClass(basicClass, transformedName, TileMolecularAssemblerReflection.class.getName());
+        }
+
         return basicClass;
     }
 }

@@ -5,8 +5,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import appeng.tile.grindstone.TileGrinder;
+
 public class TileEntityAxleReflection {
+
     public static int slowdown = 20;
+
     public static boolean aeGrinder(TileEntityAxle instance, EnumFacing dir)
     {
         BlockPos connectPos = instance.getPos().offset(dir);
@@ -14,7 +17,7 @@ public class TileEntityAxleReflection {
         double rotation = instance.getCapability(MysticalMechanicsAPI.MECH_CAPABILITY, (EnumFacing)null).getPower((EnumFacing)null);
         if(tile instanceof  TileGrinder) {
             if(rotation > 0) {
-                slowdown -= (rotation/10)/2;
+                slowdown -= rotation/20;
                 if(slowdown < 1) {
                     if (((TileGrinder) tile).canTurn()) {
                         ((TileGrinder) tile).applyTurn();
@@ -31,7 +34,6 @@ public class TileEntityAxleReflection {
         if (instance.getWorld().isRemote) {
             instance.lastAngle = instance.angle;
             instance.angle += instance.getCapability(MysticalMechanicsAPI.MECH_CAPABILITY, (EnumFacing)null).getPower((EnumFacing)null);
-
         } else {
             if (!aeGrinder(instance, instance.getBackward())) {
                 aeGrinder(instance, instance.getForward());

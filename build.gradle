@@ -61,10 +61,13 @@ repositories {
 
 dependencies {
     shade "com.github.MJaroslav.Reflectors:library:v4"
+    compileOnly "org.jetbrains:annotations:17.0.0"
     deobfCompile "mekanism:Mekanism:${mekanism_version}"
+    deobfCompile "curse.maven:just-enough-resources-jer-240630:2728585"
     deobfCompile "curse.maven:mysticalmechanics-300742:3006392"
-    deobfCompile "curse.maven:applied-energistics-2-223794:2747063"
+    deobfCompile "curse.maven:ae2-extended-life-570458:3791235"
     deobfCompile "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
+    deobfCompile "net.industrial-craft:industrialcraft-2:${ic2_version}"
     deobfCompile "curse.maven:immersive-engineering-231951:2974106"
     deobfProvided "CraftTweaker2:CraftTweaker2-API:${ct_version}"
     deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-${ct_version}"

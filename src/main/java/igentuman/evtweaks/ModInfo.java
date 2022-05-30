@@ -14,5 +14,6 @@ public final class ModInfo {
       + "required-after:crafttweaker;"
       + "required-after:mtlib;"
       + "required-after:mysticalmechanics;"
-      + "required-after:immersiveengineering;";
+      + "required-after:immersiveengineering;"
+      + "required-after:jeresources;";
 }

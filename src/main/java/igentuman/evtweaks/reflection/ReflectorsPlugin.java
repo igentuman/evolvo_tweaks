@@ -25,6 +25,11 @@ public class ReflectorsPlugin extends Reflectors.FMLLoadingPluginAdapter
             return Reflectors.reflectClass(basicClass, transformedName, TileEntityAxleReflection.class.getName());
         }
 
+        if (transformedName.equals("jeresources.profiling.ProfilingBlacklist")) {
+            return Reflectors.reflectClass(basicClass, transformedName, ProfilingBlacklistReflector.class.getName());
+        }
+
+        //assembler slowdown
         if (transformedName.equals("appeng.tile.crafting.TileMolecularAssembler")) {
             return Reflectors.reflectClass(basicClass, transformedName, TileMolecularAssemblerReflection.class.getName());
         }

@@ -24,6 +24,8 @@ public class EvTweaksRecipes {
                 ItemHelper.getStackFromString("minecraft:iron_ingot",0),
                 ItemHelper.getStackFromString("ic2:plate",3)
                 ));
+
+        MultiblockRecipes.init();
     }
 
     public static void postInit()

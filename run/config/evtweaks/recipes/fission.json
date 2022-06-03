@@ -1,0 +1,447 @@
+{
+  "name": "fission",
+  "label": "Fission Reactor",
+
+
+  "input-types": {
+    "a": {
+      "id": "nuclearcraft:fission_casing",
+      "meta": 0
+    },
+    "b": {
+      "id": "nuclearcraft:fission_glass",
+      "meta": 0
+    },
+    "c": {
+      "id": "nuclearcraft:fission_vent",
+      "meta": 0
+    },
+    "d": {
+      "id": "nuclearcraft:fission_source",
+      "meta": 0
+    },
+    "e": {
+      "id": "nuclearcraft:solid_fission_sink",
+      "meta": 7
+    },
+    "f": {
+      "id": "nuclearcraft:solid_fission_sink",
+      "meta": 1
+    },
+    "g": {
+      "id": "nuclearcraft:solid_fission_sink2",
+      "meta": 1
+    },
+    "h": {
+      "id": "nuclearcraft:solid_fission_cell",
+      "meta": 0
+    },
+    "i": {
+      "id": "nuclearcraft:heavy_water_moderator",
+      "meta": 0
+    },
+    "j": {
+      "id": "nuclearcraft:fission_irradiator",
+      "meta": 0
+    },
+    "k": {
+      "id": "nuclearcraft:fission_cell_port",
+      "meta": 0
+    },
+    "m": {
+      "id": "nuclearcraft:solid_fission_sink",
+      "meta": 8
+    },
+    "n": {
+      "id": "nuclearcraft:solid_fission_sink",
+      "meta": 6
+    },
+    "o": {
+      "id": "nuclearcraft:solid_fission_sink",
+      "meta": 4
+    },
+    "p": {
+      "id": "nuclearcraft:solid_fission_controller",
+      "meta": 0
+    },
+    "q": {
+      "id": "nuclearcraft:fission_irradiator_port",
+      "meta": 0
+    }
+  },
+  "input-nbt": {
+    "c:A": {
+      "nbt": "{isRedstonePowered:0b,fluidConnection3:{sorption1:3,sorption0:0},alternateComparator:0b,fluidConnection2:{sorption1:3,sorption0:0},fluidConnection1:{sorption1:3,sorption0:0},fluidConnection0:{sorption1:3,sorption0:0},fluidConnection5:{sorption1:3,sorption0:0},fluidConnection4:{sorption1:3,sorption0:0},redstoneControl:0b,radiationLevel:0.0d,ForgeCaps:{\"nuclearcraft:capability_default_radiation_resistance\":{shieldingRadResistance:0.0d,radiationResistance:0.0d}},id:\"nuclearcraft:fission_vent\"}"
+    },
+    "d:A": {
+      "nbt": "{redstoneControl:0b,isRedstonePowered:0b,efficiency:0.9d,radiationLevel:0.0d,ForgeCaps:{\"nuclearcraft:capability_default_radiation_resistance\":{shieldingRadResistance:0.0d,radiationResistance:0.0d}},alternateComparator:0b,facing:1,id:\"nuclearcraft:fission_source_radium_beryllium\"}"
+    },
+    "e:A": {
+      "nbt": "{isRedstonePowered:0b,clusterHeat:0L,alternateComparator:0b,sinkName:\"lapis\",redstoneControl:0b,coolingRate:100,radiationLevel:0.0d,ForgeCaps:{\"nuclearcraft:capability_default_radiation_resistance\":{shieldingRadResistance:0.0d,radiationResistance:0.0d}},id:\"nuclearcraft:solid_fission_sink_lapis\",ruleID:\"lapis_sink\"}"
+    },
+    "f:A": {
+      "nbt": "{isRedstonePowered:0b,clusterHeat:0L,alternateComparator:0b,sinkName:\"iron\",redstoneControl:0b,coolingRate:50,radiationLevel:0.0d,ForgeCaps:{\"nuclearcraft:capability_default_radiation_resistance\":{shieldingRadResistance:0.0d,radiationResistance:0.0d}},id:\"nuclearcraft:solid_fission_sink_iron\",ruleID:\"iron_sink\"}"
+    },
+    "g:A": {
+      "nbt": "{isRedstonePowered:0b,clusterHeat:0L,alternateComparator:0b,sinkName:\"lead\",redstoneControl:0b,coolingRate:60,radiationLevel:0.0d,ForgeCaps:{\"nuclearcraft:capability_default_radiation_resistance\":{shieldingRadResistance:0.0d,radiationResistance:0.0d}},id:\"nuclearcraft:solid_fission_sink_lead\",ruleID:\"lead_sink\"}"
+    },
+    "h:A": {
+      "nbt": "{isRedstonePowered:0b,decayProcessHeat:0.0d,isProcessing:0b,alternateComparator:0b,iodineFraction:0.0d,redstoneControl:0b,baseProcessCriticality:1,selfPriming:0b,poisonFraction:0.0d,canProcessInputs:0b,ForgeCaps:{\"nuclearcraft:capability_default_radiation_resistance\":{shieldingRadResistance:0.0d,radiationResistance:0.0d}},flux:0L,Items:[],id:\"nuclearcraft:solid_fission_cell\",baseProcessHeat:0,hasConsumed:0b,decayHeatFraction:0.0d,baseProcessEfficiency:0.0d,clusterHeat:0L,inventoryConnection0:{sorption1:3,sorption0:3},inventoryConnection1:{sorption1:3,sorption0:3},baseProcessDecayFactor:0.0d,radiationLevel:0.0d,inventoryConnection4:{sorption1:3,sorption0:3},inventoryConnection5:{sorption1:3,sorption0:3},inventoryConnection2:{sorption1:3,sorption0:3},inventoryConnection3:{sorption1:3,sorption0:3},time:0.0d,baseProcessTime:1.0d}"
+    },
+    "j:A": {
+      "nbt": "{isRedstonePowered:0b,isProcessing:0b,alternateComparator:0b,redstoneControl:0b,canProcessInputs:0b,ForgeCaps:{\"nuclearcraft:capability_default_radiation_resistance\":{shieldingRadResistance:0.0d,radiationResistance:0.0d}},flux:0L,Items:[],id:\"nuclearcraft:fission_irradiator\",baseProcessHeatPerFlux:0.0d,hasConsumed:0b,baseProcessEfficiency:0.0d,clusterHeat:0L,inventoryConnection0:{sorption1:3,sorption0:3},inventoryConnection1:{sorption1:3,sorption0:3},radiationLevel:0.0d,inventoryConnection4:{sorption1:3,sorption0:3},inventoryConnection5:{sorption1:3,sorption0:3},inventoryConnection2:{sorption1:3,sorption0:3},inventoryConnection3:{sorption1:3,sorption0:3},time:0.0d,baseProcessTime:1.0d}"
+    },
+    "k:A": {
+      "nbt": "{isRedstonePowered:0b,alternateComparator:0b,axis:\"z\",redstoneControl:0b,inventoryConnection0:{sorption1:1,sorption0:0},inventoryConnection1:{sorption1:1,sorption0:0},radiationLevel:0.0d,inventoryStackLimit:64,inventoryStackSize0:0,inventoryConnection4:{sorption1:1,sorption0:0},ForgeCaps:{\"nuclearcraft:capability_default_radiation_resistance\":{shieldingRadResistance:0.0d,radiationResistance:0.0d}},inventoryConnection5:{sorption1:1,sorption0:0},Items:[],inventoryConnection2:{sorption1:1,sorption0:0},id:\"nuclearcraft:fission_cell_port\",inventoryConnection3:{sorption1:1,sorption0:0},inventoryStackSize1:0}"
+    },
+    "m:A": {
+      "nbt": "{isRedstonePowered:0b,clusterHeat:0L,alternateComparator:0b,sinkName:\"gold\",redstoneControl:0b,coolingRate:110,radiationLevel:0.0d,ForgeCaps:{\"nuclearcraft:capability_default_radiation_resistance\":{shieldingRadResistance:0.0d,radiationResistance:0.0d}},id:\"nuclearcraft:solid_fission_sink_gold\",ruleID:\"gold_sink\"}"
+    },
+    "n:A": {
+      "nbt": "{isRedstonePowered:0b,clusterHeat:0L,alternateComparator:0b,sinkName:\"glowstone\",redstoneControl:0b,coolingRate:90,radiationLevel:0.0d,ForgeCaps:{\"nuclearcraft:capability_default_radiation_resistance\":{shieldingRadResistance:0.0d,radiationResistance:0.0d}},id:\"nuclearcraft:solid_fission_sink_glowstone\",ruleID:\"glowstone_sink\"}"
+    },
+    "o:A": {
+      "nbt": "{isRedstonePowered:0b,clusterHeat:0L,alternateComparator:0b,sinkName:\"obsidian\",redstoneControl:0b,coolingRate:70,radiationLevel:0.0d,ForgeCaps:{\"nuclearcraft:capability_default_radiation_resistance\":{shieldingRadResistance:0.0d,radiationResistance:0.0d}},id:\"nuclearcraft:solid_fission_sink_obsidian\",ruleID:\"obsidian_sink\"}"
+    },
+    "p:A": {
+      "nbt": "{redstoneControl:0b,isRedstonePowered:0b,radiationLevel:0.0d,ForgeCaps:{\"nuclearcraft:capability_default_radiation_resistance\":{shieldingRadResistance:0.0d,radiationResistance:0.0d}},alternateComparator:0b,id:\"nuclearcraft:solid_fission_controller\"}"
+    },
+    "q:A": {
+      "nbt": "{isRedstonePowered:0b,alternateComparator:0b,axis:\"x\",redstoneControl:0b,inventoryConnection0:{sorption1:1,sorption0:0},inventoryConnection1:{sorption1:1,sorption0:0},radiationLevel:0.0d,inventoryStackLimit:64,inventoryStackSize0:0,inventoryConnection4:{sorption1:1,sorption0:0},ForgeCaps:{\"nuclearcraft:capability_default_radiation_resistance\":{shieldingRadResistance:0.0d,radiationResistance:0.0d}},inventoryConnection5:{sorption1:1,sorption0:0},Items:[],inventoryConnection2:{sorption1:1,sorption0:0},id:\"nuclearcraft:fission_irradiator_port\",inventoryConnection3:{sorption1:1,sorption0:0},inventoryStackSize1:0}"
+    }
+  },
+  "shape": [
+    [
+      [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      [
+        "a",
+        "b",
+        "b",
+        "b",
+        "b",
+        "b",
+        "a"
+      ],
+      [
+        "a",
+        "b",
+        "b",
+        "b",
+        "b",
+        "b",
+        "a"
+      ],
+      [
+        "a",
+        "b",
+        "b",
+        "b",
+        "b",
+        "b",
+        "a"
+      ],
+      [
+        "a",
+        "b",
+        "b",
+        "b",
+        "b",
+        "b",
+        "a"
+      ],
+      [
+        "a",
+        "d:A",
+        "b",
+        "b",
+        "b",
+        "d:A",
+        "a"
+      ],
+      [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a"
+      ]
+    ],
+    [
+      [
+        "a",
+        "b",
+        "b",
+        "b",
+        "b",
+        "b",
+        "a"
+      ],
+      [
+        "b",
+        "_",
+        "_",
+        "_",
+        "_",
+        "_",
+        "b"
+      ],
+      [
+        "b",
+        "_",
+        "_",
+        "_",
+        "_",
+        "_",
+        "b"
+      ],
+      [
+        "b",
+        "g:A",
+        "_",
+        "_",
+        "_",
+        "g:A",
+        "b"
+      ],
+      [
+        "b",
+        "f:A",
+        "m:A",
+        "_",
+        "m:A",
+        "f:A",
+        "b"
+      ],
+      [
+        "b",
+        "e:A",
+        "f:A",
+        "m:A",
+        "f:A",
+        "e:A",
+        "b"
+      ],
+      [
+        "a",
+        "b",
+        "b",
+        "b",
+        "b",
+        "b",
+        "a"
+      ]
+    ],
+    [
+      [
+        "a",
+        "b",
+        "b",
+        "b",
+        "b",
+        "b",
+        "a"
+      ],
+      [
+        "b",
+        "j:A",
+        "_",
+        "_",
+        "_",
+        "j:A",
+        "b"
+      ],
+      [
+        "b",
+        "i",
+        "_",
+        "_",
+        "_",
+        "i",
+        "b"
+      ],
+      [
+        "b",
+        "i",
+        "_",
+        "_",
+        "_",
+        "i",
+        "b"
+      ],
+      [
+        "b",
+        "i",
+        "n:A",
+        "o:A",
+        "n:A",
+        "i",
+        "b"
+      ],
+      [
+        "b",
+        "h:A",
+        "i",
+        "i",
+        "i",
+        "h:A",
+        "b"
+      ],
+      [
+        "a",
+        "b",
+        "b",
+        "b",
+        "b",
+        "b",
+        "a"
+      ]
+    ],
+    [
+      [
+        "a",
+        "k:A",
+        "b",
+        "b",
+        "b",
+        "k:A",
+        "a"
+      ],
+      [
+        "q:A",
+        "_",
+        "_",
+        "_",
+        "_",
+        "_",
+        "c:A"
+      ],
+      [
+        "b",
+        "_",
+        "_",
+        "_",
+        "_",
+        "_",
+        "b"
+      ],
+      [
+        "b",
+        "g:A",
+        "_",
+        "_",
+        "_",
+        "g:A",
+        "b"
+      ],
+      [
+        "b",
+        "f:A",
+        "m:A",
+        "_",
+        "m:A",
+        "f:A",
+        "b"
+      ],
+      [
+        "q:A",
+        "e:A",
+        "f:A",
+        "m:A",
+        "f:A",
+        "e:A",
+        "c:A"
+      ],
+      [
+        "a",
+        "b",
+        "b",
+        "p:A",
+        "b",
+        "b",
+        "a"
+      ]
+    ],
+    [
+      [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a"
+      ]
+    ]
+  ]
+
+
+}
+
+
+
+
+

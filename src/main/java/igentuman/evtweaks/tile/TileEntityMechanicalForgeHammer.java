@@ -7,7 +7,12 @@ import igentuman.evtweaks.capability.InputMechCapability;
 import igentuman.evtweaks.inventory.ExistingOnlyItemHandlerWrapper;
 import igentuman.evtweaks.inventory.InventoryCraftingWrapper;
 import igentuman.evtweaks.inventory.QueueItemHandler;
+import igentuman.evtweaks.network.ModPacketHandler;
+import igentuman.evtweaks.network.TileProcessUpdatePacket;
+import igentuman.evtweaks.recipe.EvTweaksRecipes;
 import igentuman.evtweaks.util.ItemHelper;
+import nc.network.PacketHandler;
+import nc.tile.internal.fluid.Tank;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.InventoryCrafting;
@@ -16,16 +21,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -108,15 +116,28 @@ public class TileEntityMechanicalForgeHammer extends TileEntity implements ITick
         return result;
     }
 
+    public TileProcessUpdatePacket getTileUpdatePacket() {
+        return new TileProcessUpdatePacket(
+                this.pos,
+                this.requiredProgress,
+                this.progress
+        );
+    }
+
+    public void onTileUpdatePacket(TileProcessUpdatePacket message) {
+        this.progress = (int)message.progress;
+        this.requiredProgress = (int)message.requiredProgress;
+    }
+
     @Override
     public void update() {
-        if(world.isRemote) return;
 
-        if(outputCooldown > 0) {
+
+        if(outputCooldown > 0 && !world.isRemote) {
             outputCooldown--;
         }
 
-        if(!outputQueue.isEmpty()) {
+        if(!outputQueue.isEmpty() && !world.isRemote) {
             if(outputCooldown <= 0) {
                 outputItemFromQueue();
                 outputCooldown = ModConfig.mechanicalCrafter.outputCooldown;
@@ -126,11 +147,16 @@ public class TileEntityMechanicalForgeHammer extends TileEntity implements ITick
 
         if(canProgress()) {
             progress += mechCapability.power;
+            if( !world.isRemote) {
+                ModPacketHandler.instance.sendToAll(this.getTileUpdatePacket());
+            }
 
             if(progress >= requiredProgress) {
                 process();
             }
+
         } else {
+            if( !world.isRemote)
             progress = 0;
         }
     }
@@ -163,7 +189,7 @@ public class TileEntityMechanicalForgeHammer extends TileEntity implements ITick
                 return ItemHelper.getStackFromString("ic2:plate",1);
             case "ic2:ingot:6"://tin ingot
                 return ItemHelper.getStackFromString("ic2:plate",8);
-            case "ic2:ingot:9"://tin block
+            case "ic2:resource:9"://tin block
                 return ItemHelper.getStackFromString("ic2:plate",17);
             case "ic2:resource:7"://lead block
                 return ItemHelper.getStackFromString("ic2:plate",14);
@@ -181,13 +207,30 @@ public class TileEntityMechanicalForgeHammer extends TileEntity implements ITick
         return ItemStack.EMPTY;
     }
 
+
     public void process() {
-        progress = 0;
+
         if(inventory.getCraftingGrid().getStackInSlot(0) == null) return;
         ItemStack output = ForgeringRecipeOutput(inventory.getCraftingGrid().getStackInSlot(0));
         if(output == null || output.equals(ItemStack.EMPTY)) return;
-        outputQueue.push(output);
-        inventory.extractItem(0, 1, false);
+        if( !world.isRemote) {
+            outputQueue.push(output);
+            inventory.extractItem(0, 1, false);
+        }
+        if(progress >= requiredProgress && progress > 0) {
+            playForgeSound();
+        }
+        progress = 0;
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void playForgeSound()
+    {
+        world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvent.REGISTRY.getObject(new ResourceLocation("block.anvil.land")),SoundCategory.BLOCKS,0.2f,1,false);
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 
     private void outputItemFromQueue() {
@@ -259,6 +302,10 @@ public class TileEntityMechanicalForgeHammer extends TileEntity implements ITick
 
             TileEntityMechanicalForgeHammer.this.markDirty();
         }
+    }
+
+    public void handleUpdateTag(@Nonnull NBTTagCompound tag) {
+        this.readFromNBT(tag);
     }
 
     @NotNull

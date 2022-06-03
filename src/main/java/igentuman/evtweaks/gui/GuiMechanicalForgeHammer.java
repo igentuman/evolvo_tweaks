@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GuiMechanicalForgeHammer extends BaseGui {
     private static final ResourceLocation background = new ResourceLocation(
-            ModInfo.MODID, "textures/gui/container/mechanical_forgehammer.png"
+            ModInfo.MODID, "textures/gui/container/forgehammer.png"
     );
 
     private final ContainerMechanicalForgehammer container;
@@ -27,11 +27,11 @@ public class GuiMechanicalForgeHammer extends BaseGui {
 
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
-        int progress = this.getProgressScaled(24);
+        int progress = this.getProgressScaled(26);
         this.drawTexturedModalRect(
-                guiLeft + 89, guiTop + 34,
+                guiLeft + 72, guiTop + 35,
                 176, 0,
-                progress + 1, 16
+                progress + 1, 18
         );
     }
 
@@ -66,7 +66,7 @@ public class GuiMechanicalForgeHammer extends BaseGui {
             super.renderHoveredToolTip(mouseX, mouseY);
         }
         else if(!container.result.isEmpty()
-                && isPointInRegion(124, 35, 16, 16, mouseX, mouseY)) {
+                && isPointInRegion(104, 35, 16, 16, mouseX, mouseY)) {
             this.renderToolTip(container.result, mouseX, mouseY);
         }
     }

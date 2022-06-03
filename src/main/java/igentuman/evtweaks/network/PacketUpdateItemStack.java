@@ -1,5 +1,6 @@
 package igentuman.evtweaks.network;
 
+import igentuman.evtweaks.EvTweaks;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
@@ -66,7 +67,7 @@ public class PacketUpdateItemStack implements IMessage {
         @Override
         public IMessage onMessage(PacketUpdateItemStack message, MessageContext ctx) {
             FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() -> {
-                // EvTweaks.proxy.handleUpdateItemStack(message, ctx);
+                 EvTweaks.proxy.handleUpdateItemStack(message, ctx);
             });
             return null;
         }

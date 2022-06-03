@@ -6,6 +6,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.common.collect.ImmutableList;
 import igentuman.evtweaks.recipe.ForgeHammerRecipe;
+import igentuman.evtweaks.util.ItemHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
@@ -27,26 +28,17 @@ import static igentuman.evtweaks.ModInfo.MODID;
 @ParametersAreNonnullByDefault
 public class ForgeHammerRecipeCategory implements IRecipeCategory<ForgeHammerRecipeCategory.Wrapper>
 {
-    private static final ResourceLocation GUI_LOCATION = new ResourceLocation(MODID, "textures/gui/mechanical_forgehammer.png");
-    private static final String TRANSLATION_KEY = "jei.category.mechanical_forgehammer";
+    private static final ResourceLocation GUI_LOCATION = new ResourceLocation(MODID, "textures/gui/jei/forgehammer.png");
+    private static final String TRANSLATION_KEY = "evtweaks.jei.category.forgehammer";
 
     private final IDrawable background;
-    private final IDrawable icon;
     private final IDrawableAnimated animatedArrow;
-    private final IDrawableAnimated animatedFlame;
 
     public ForgeHammerRecipeCategory(IGuiHelper guiHelper)
     {
-
-        background = guiHelper.createDrawable(GUI_LOCATION, 0, 0, 74, 54);
-        icon = guiHelper.createDrawable(GUI_LOCATION, 111, 0, 16, 16);
-
-        IDrawableStatic staticArrow = guiHelper.createDrawable(GUI_LOCATION, 88, 0, 16, 23);
+        background = guiHelper.createDrawable(GUI_LOCATION, 0, 0, 74, 20);
+        IDrawableStatic staticArrow = guiHelper.createDrawable(GUI_LOCATION, 0, 20, 26, 20);
         animatedArrow = guiHelper.createAnimatedDrawable(staticArrow, 200, IDrawableAnimated.StartDirection.LEFT, false);
-
-        IDrawableStatic staticFlame = guiHelper.createDrawable(GUI_LOCATION, 74, 0, 14, 13);
-        animatedFlame = guiHelper.createAnimatedDrawable(staticFlame, 300, IDrawableAnimated.StartDirection.TOP, true);
-
     }
 
     @Nonnull
@@ -80,7 +72,7 @@ public class ForgeHammerRecipeCategory implements IRecipeCategory<ForgeHammerRec
     @Override
     public IDrawable getIcon()
     {
-        return icon;
+        return null;
     }
 
     @Override
@@ -88,7 +80,6 @@ public class ForgeHammerRecipeCategory implements IRecipeCategory<ForgeHammerRec
     public void drawExtras(Minecraft minecraft)
     {
         animatedArrow.draw(minecraft, 26, 1);
-        animatedFlame.draw(minecraft, 30, 20);
     }
 
     @Override

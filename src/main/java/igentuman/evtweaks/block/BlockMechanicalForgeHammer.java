@@ -30,7 +30,7 @@ public class BlockMechanicalForgeHammer extends BlockHorizontal {
         super(Material.IRON);
         this.setHardness(3.5f);
         this.setResistance(17.5f);
-
+        this.setTranslationKey("mechanical_forgehammer");
         this.setRegistryName(ModInfo.MODID, "mechanical_forgehammer");
         this.setCreativeTab(CreativeTabs.DECORATIONS);
     }

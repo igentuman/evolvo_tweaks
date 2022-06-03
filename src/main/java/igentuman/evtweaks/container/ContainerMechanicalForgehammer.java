@@ -51,7 +51,7 @@ public class ContainerMechanicalForgehammer extends Container implements PacketU
     public void sendResultStack(IContainerListener listener, ItemStack stack) {
         if(!(listener instanceof EntityPlayerMP)) return;
 
-        ModPacketHandler.INSTANCE.sendTo(
+        ModPacketHandler.instance.sendTo(
                 new PacketUpdateItemStack(this, 0, forgehammer.getResult()),
                 (EntityPlayerMP) listener
         );

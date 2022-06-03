@@ -6,13 +6,19 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class ModPacketHandler {
     private static int packetId = 0;
-    public static SimpleNetworkWrapper INSTANCE = null;
+    public static SimpleNetworkWrapper instance = null;
 
     public static void registerMessages(String channelName) {
-        INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(channelName);
-        INSTANCE.registerMessage(
+        instance = NetworkRegistry.INSTANCE.newSimpleChannel(channelName);
+        instance.registerMessage(
                 PacketUpdateItemStack.Handler.class,
                 PacketUpdateItemStack.class,
+                packetId++,
+                Side.CLIENT
+        );
+        instance.registerMessage(
+                TileProcessUpdatePacket.Handler.class,
+                TileProcessUpdatePacket.class,
                 packetId++,
                 Side.CLIENT
         );

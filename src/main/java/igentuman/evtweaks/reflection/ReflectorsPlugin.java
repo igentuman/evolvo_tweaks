@@ -25,6 +25,12 @@ public class ReflectorsPlugin extends Reflectors.FMLLoadingPluginAdapter
             return Reflectors.reflectClass(basicClass, transformedName, TileEntityAxleReflection.class.getName());
         }
 
+        //bellows expand
+        if (transformedName.equals("decivex.mech_crafting.mechanical_bellows.TileEntityMechanicalBellows")) {
+            return Reflectors.reflectClass(basicClass, transformedName, TileEntityMechanicalBellowsReflection.class.getName());
+        }
+
+        //whitelist instead
         if (transformedName.equals("jeresources.profiling.ProfilingBlacklist")) {
             return Reflectors.reflectClass(basicClass, transformedName, ProfilingBlacklistReflector.class.getName());
         }

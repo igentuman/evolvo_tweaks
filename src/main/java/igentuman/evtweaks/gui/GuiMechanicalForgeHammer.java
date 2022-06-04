@@ -29,7 +29,7 @@ public class GuiMechanicalForgeHammer extends BaseGui {
 
         int progress = this.getProgressScaled(26);
         this.drawTexturedModalRect(
-                guiLeft + 72, guiTop + 35,
+                guiLeft + 86, guiTop + 35,
                 176, 0,
                 progress + 1, 18
         );
@@ -66,7 +66,7 @@ public class GuiMechanicalForgeHammer extends BaseGui {
             super.renderHoveredToolTip(mouseX, mouseY);
         }
         else if(!container.result.isEmpty()
-                && isPointInRegion(104, 35, 16, 16, mouseX, mouseY)) {
+                && isPointInRegion(124, 35, 16, 16, mouseX, mouseY)) {
             this.renderToolTip(container.result, mouseX, mouseY);
         }
     }

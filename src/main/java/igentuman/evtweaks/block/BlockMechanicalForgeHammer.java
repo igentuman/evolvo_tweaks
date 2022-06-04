@@ -3,6 +3,7 @@ package igentuman.evtweaks.block;
 import igentuman.evtweaks.EvTweaks;
 import igentuman.evtweaks.ModInfo;
 import igentuman.evtweaks.tile.TileEntityMechanicalForgeHammer;
+import igentuman.evtweaks.util.ItemHelper;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -70,7 +71,10 @@ public class BlockMechanicalForgeHammer extends BlockHorizontal {
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         TileEntity te = worldIn.getTileEntity(pos);
-
+        if(playerIn.getHeldItemMainhand().getItem().getRegistryName().toString().equals("immersiveengineering:tool")) {
+            rotateBlock(worldIn,pos,facing.getOpposite());
+            return false;
+        }
         if(!(te instanceof TileEntityMechanicalForgeHammer)) {
             return true;
         }

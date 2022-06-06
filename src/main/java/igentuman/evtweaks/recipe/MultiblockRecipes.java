@@ -9,6 +9,7 @@ import com.google.gson.stream.JsonReader;
 import igentuman.evtweaks.EvTweaks;
 
 import igentuman.evtweaks.util.SerializationHelper;
+import org.dave.compactmachines3.utility.Logz;
 import org.dave.compactmachines3.utility.ResourceLoader;
 
 public class MultiblockRecipes {
@@ -39,6 +40,7 @@ public class MultiblockRecipes {
         if (!recipeDirectory.exists()) {
             recipeDirectory.mkdir();
         }
+        MultiblockRecipe recipe;
         ResourceLoader loader = new ResourceLoader(EvTweaks.class, recipeDirectory, "assets/compactmachines3/config/recipes/");
         for(Map.Entry<String, InputStream> entry : loader.getResources().entrySet()) {
             String filename = entry.getKey();
@@ -48,7 +50,15 @@ public class MultiblockRecipes {
                 continue;
             }
             JsonReader reader = new JsonReader(new InputStreamReader(is));
-            MultiblockRecipe recipe = SerializationHelper.GSON.fromJson(reader, MultiblockRecipe.class);
+
+            try {
+                recipe = SerializationHelper.GSON.fromJson(reader, MultiblockRecipe.class);
+            } catch (NullPointerException e) {
+                Logz.error("Wrong multiblock recipe. "+ filename);
+                Logz.error(e.toString());
+                recipe = null;
+            }
+
             if (recipe == null) {
                 continue;
             }

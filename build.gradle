@@ -63,7 +63,10 @@ dependencies {
     shade "com.github.MJaroslav.Reflectors:library:v4"
     compileOnly "org.jetbrains:annotations:17.0.0"
     deobfCompile "mekanism:Mekanism:${mekanism_version}"
+    deobfCompile "curse.maven:codechicken-lib-1-8-242818:2779848"
+    deobfCompile "curse.maven:ender-storage-1-8-245174:2755787"
     deobfProvided "nuclearcraft-overhauled:NuclearCraft:${nuclearcraft_version}:${mc_version}"
+
     deobfCompile "curse.maven:just-enough-resources-jer-240630:2728585"
     deobfCompile "curse.maven:compact-machines-224218:2707509"
     deobfCompile "curse.maven:mysticalmechanics-300742:3006392"

@@ -3,7 +3,7 @@ package igentuman.evtweaks;
 import net.minecraftforge.common.config.Config;
 
 @Config(modid = ModInfo.MODID)
-public class ModConfig {
+public class  ModConfig {
     public static MechanicalCrafter mechanicalCrafter = new MechanicalCrafter();
     public static SturdyGearbox sturdyGearbox = new SturdyGearbox();
     public static MechanicalBellows mechanicalBellows = new MechanicalBellows();

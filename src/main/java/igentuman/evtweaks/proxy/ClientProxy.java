@@ -2,7 +2,6 @@ package igentuman.evtweaks.proxy;
 
 import igentuman.evtweaks.network.PacketUpdateItemStack;
 import igentuman.evtweaks.network.TileProcessUpdatePacket;
-import igentuman.evtweaks.tile.TileEntityMechanicalForgeHammer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -23,8 +22,5 @@ public class ClientProxy implements ISidedProxy {
     public void handleProcessUpdatePacket(TileProcessUpdatePacket message, MessageContext ctx) {
         EntityPlayer player = Minecraft.getMinecraft().player;
         TileEntity te = Minecraft.getMinecraft().world.getTileEntity(message.pos);
-        if(te instanceof TileEntityMechanicalForgeHammer) {
-            ((TileEntityMechanicalForgeHammer) te).onTileUpdatePacket(message);
-        }
     }
 }

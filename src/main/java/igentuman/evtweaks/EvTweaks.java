@@ -1,7 +1,5 @@
 package igentuman.evtweaks;
 
-import igentuman.evtweaks.network.GuiProxy;
-import igentuman.evtweaks.network.ModPacketHandler;
 import igentuman.evtweaks.proxy.ISidedProxy;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
@@ -13,10 +11,8 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import igentuman.evtweaks.proxy.CommonProxy;
 
 import static igentuman.evtweaks.ModInfo.MODID;
 
@@ -44,7 +40,6 @@ public class EvTweaks {
 
     MinecraftForge.EVENT_BUS.register(new RegistryHandler());
     MinecraftForge.EVENT_BUS.register(this);
-    ModPacketHandler.registerMessages(MODID);
   }
 
   @EventHandler
@@ -52,7 +47,6 @@ public class EvTweaks {
     logger.info("Starting Initialization.");
     proxy.init(event);
     ConfigManager.sync(MODID, Config.Type.INSTANCE);
-    NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiProxy());
   }
 
   @SubscribeEvent

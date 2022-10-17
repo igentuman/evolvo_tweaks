@@ -14,7 +14,8 @@
     },
     "c": {
       "id": "nuclearcraft:fission_vent",
-      "meta": 0
+      "meta": 5,
+      "ignore-meta": true
     },
     "d": {
       "id": "nuclearcraft:fission_source",
@@ -46,7 +47,8 @@
     },
     "k": {
       "id": "nuclearcraft:fission_cell_port",
-      "meta": 0
+      "meta": 2,
+      "ignore-meta": true
     },
     "m": {
       "id": "nuclearcraft:solid_fission_sink",
@@ -62,7 +64,8 @@
     },
     "p": {
       "id": "nuclearcraft:solid_fission_controller",
-      "meta": 0
+      "meta": 3,
+      "ignore-meta": true
     },
     "q": {
       "id": "nuclearcraft:fission_irradiator_port",

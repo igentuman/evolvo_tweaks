@@ -24,7 +24,8 @@
     },
     "e": {
       "id": "nuclearcraft:turbine_outlet",
-      "meta": 2
+      "meta": 2,
+      "ignore-meta": true
     },
     "f": {
       "id": "nuclearcraft:turbine_glass",
@@ -32,23 +33,28 @@
     },
     "g": {
       "id": "nuclearcraft:turbine_rotor_blade_steel",
-      "meta": 2
+      "meta": 2,
+      "ignore-meta": true
     },
     "h": {
       "id": "nuclearcraft:turbine_rotor_blade_steel",
-      "meta": 1
+      "meta": 1,
+      "ignore-meta": true
     },
     "i": {
       "id": "nuclearcraft:turbine_rotor_shaft",
-      "meta": 3
+      "meta": 3,
+      "ignore-meta": true
     },
     "j": {
       "id": "nuclearcraft:turbine_controller",
-      "meta": 5
+      "meta": 5,
+      "ignore-meta": true
     },
     "k": {
       "id": "nuclearcraft:turbine_inlet",
-      "meta": 2
+      "meta": 2,
+      "ignore-meta": true
     }
   },
   "input-nbt": {

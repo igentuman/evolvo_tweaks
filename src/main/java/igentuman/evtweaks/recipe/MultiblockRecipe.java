@@ -115,6 +115,9 @@ public class MultiblockRecipe {
                 if(referenceIgnoresMeta.getOrDefault(ref, false)) {
                     result.add(new ItemStack(state.getBlock(), count, 0));
                 } else {
+
+                    //result.add(new ItemStack(state.getBlock(), count, 0));
+
                     result.add(new ItemStack(state.getBlock(), count, state.getBlock().getMetaFromState(state)));
                 }
             }

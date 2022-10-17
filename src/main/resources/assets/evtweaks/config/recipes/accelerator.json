@@ -33,7 +33,7 @@
     "i": {
       "id": "qmd:linear_accelerator_controller",
       "meta": 4,
-      "grid_meta": 0
+      "ignore-meta": true
     },
     "j": {
       "id": "qmd:accelerator_cooler1",
@@ -53,7 +53,8 @@
     },
     "n": {
       "id": "qmd:accelerator_vent",
-      "meta": 0
+      "meta": 4,
+      "ignore-meta": true
     },
     "p": {
       "id": "qmd:accelerator_cavity",
@@ -65,7 +66,8 @@
     },
     "r": {
       "id": "qmd:accelerator_source",
-      "meta": 0
+      "meta": 3,
+      "ignore-meta": true
     }
   },
   "input-nbt": {

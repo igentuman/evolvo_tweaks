@@ -4,8 +4,9 @@
 
   "input-types": {
     "a": {
-      "id": "mekanism:boundingblock",
-      "meta": 0
+      "id": "minecraft:air",
+      "meta": 0,
+      "ignore-meta": true
     },
     "b": {
       "id": "mekanismgenerators:generator",

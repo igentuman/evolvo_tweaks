@@ -92,7 +92,6 @@ public class RecipeRenderManager {
                         renderer.render(renderTe, pos.getX(), pos.getY(), pos.getZ(), 0.0f);
                         //renderer.drawBatch(0);
                     } catch(Exception e) {
-                        //CompactMachines3.logger.info("Could not render tile entity '{}': {}", renderTe.getClass().getSimpleName(), e.getMessage());
                     }
 
 

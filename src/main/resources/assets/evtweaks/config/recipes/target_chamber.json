@@ -14,7 +14,8 @@
     },
     "c": {
       "id": "qmd:particle_chamber_beam_port",
-      "meta": 1
+      "meta": 1,
+      "ignore-meta": true
     },
     "d": {
       "id": "qmd:particle_chamber_port",
@@ -38,11 +39,13 @@
     },
     "i": {
       "id": "qmd:target_chamber_controller",
-      "meta": 5
+      "meta": 5,
+      "ignore-meta": true
     },
     "j": {
       "id": "qmd:particle_chamber_beam_port",
-      "meta": 0
+      "meta": 0,
+      "ignore-meta": true
     }
   },
   "input-nbt": {

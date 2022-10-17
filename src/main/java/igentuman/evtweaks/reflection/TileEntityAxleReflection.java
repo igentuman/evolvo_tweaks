@@ -1,4 +1,5 @@
 package igentuman.evtweaks.reflection;
+import igentuman.evtweaks.ModConfig;
 import mysticalmechanics.api.MysticalMechanicsAPI;
 import mysticalmechanics.tileentity.TileEntityAxle;
 import net.minecraft.tileentity.TileEntity;
@@ -8,7 +9,7 @@ import appeng.tile.grindstone.TileGrinder;
 
 public class TileEntityAxleReflection {
 
-    public static int slowdown = 20;
+    public static int slowdown = ModConfig.tweaks.ae2_grinder_mechanical_power_required;
 
     public static boolean aeGrinder(TileEntityAxle instance, EnumFacing dir)
     {
@@ -22,7 +23,7 @@ public class TileEntityAxleReflection {
                     if (((TileGrinder) tile).canTurn()) {
                         ((TileGrinder) tile).applyTurn();
                     }
-                    slowdown =20;
+                    slowdown = ModConfig.tweaks.ae2_grinder_mechanical_power_required;
                 }
             }
             return true;

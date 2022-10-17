@@ -1,5 +1,6 @@
 package igentuman.evtweaks.render;
 import igentuman.evtweaks.recipe.MultiblockRecipe;
+import igentuman.evtweaks.util.ProxyWorld;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
@@ -13,7 +14,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.dave.compactmachines3.world.ProxyWorld;
 import org.lwjgl.opengl.GL11;
 
 import java.util.HashMap;

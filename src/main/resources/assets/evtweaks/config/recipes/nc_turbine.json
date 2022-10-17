@@ -1,0 +1,287 @@
+{
+  "name": "nc_turbine",
+
+  "label": "Basic NC Turbine",
+
+
+
+  "input-types": {
+    "a": {
+      "id": "nuclearcraft:turbine_casing",
+      "meta": 0
+    },
+    "b": {
+      "id": "nuclearcraft:turbine_dynamo_coil",
+      "meta": 2
+    },
+    "c": {
+      "id": "nuclearcraft:turbine_dynamo_coil",
+      "meta": 0
+    },
+    "d": {
+      "id": "nuclearcraft:turbine_rotor_bearing",
+      "meta": 0
+    },
+    "e": {
+      "id": "nuclearcraft:turbine_outlet",
+      "meta": 2
+    },
+    "f": {
+      "id": "nuclearcraft:turbine_glass",
+      "meta": 0
+    },
+    "g": {
+      "id": "nuclearcraft:turbine_rotor_blade_steel",
+      "meta": 2
+    },
+    "h": {
+      "id": "nuclearcraft:turbine_rotor_blade_steel",
+      "meta": 1
+    },
+    "i": {
+      "id": "nuclearcraft:turbine_rotor_shaft",
+      "meta": 3
+    },
+    "j": {
+      "id": "nuclearcraft:turbine_controller",
+      "meta": 5
+    },
+    "k": {
+      "id": "nuclearcraft:turbine_inlet",
+      "meta": 2
+    }
+  },
+  "input-nbt": {
+    "a:A": {
+      "nbt": "{redstoneControl:0b,isRedstonePowered:0b,radiationLevel:0.0d,alternateComparator:0b,id:\"nuclearcraft:turbine_casing\"}"
+    },
+    "b:A": {
+      "nbt": "{energyConnections0:3,isRedstonePowered:0b,energyConnections4:3,energyConnections3:1,energyConnections2:1,energyConnections1:3,alternateComparator:0b,energyConnections5:3,partName:\"aluminum\",redstoneControl:0b,isInValidPosition:0b,conductivity:1.0d,radiationLevel:0.0d,id:\"nuclearcraft:turbine_dynamo_coil_aluminum\",ruleID:\"aluminum_coil\"}"
+    },
+    "c:A": {
+      "nbt": "{energyConnections0:3,isRedstonePowered:0b,energyConnections4:3,energyConnections3:1,energyConnections2:1,energyConnections1:3,alternateComparator:0b,energyConnections5:3,partName:\"magnesium\",redstoneControl:0b,isInValidPosition:0b,conductivity:0.88d,radiationLevel:0.0d,id:\"nuclearcraft:turbine_dynamo_coil_magnesium\",ruleID:\"magnesium_coil\"}"
+    },
+    "d:A": {
+      "nbt": "{redstoneControl:0b,isRedstonePowered:0b,radiationLevel:0.0d,alternateComparator:0b,id:\"nuclearcraft:turbine_rotor_bearing\"}"
+    },
+    "e:A": {
+      "nbt": "{isRedstonePowered:0b,fluidConnection3:{sorption0:1},alternateComparator:0b,fluidConnection2:{sorption0:3},fluidConnection1:{sorption0:3},fluidConnection0:{sorption0:3},fluidConnection5:{sorption0:3},fluidConnection4:{sorption0:3},redstoneControl:0b,radiationLevel:0.0d,id:\"nuclearcraft:turbine_outlet\"}"
+    },
+    "f:A": {
+      "nbt": "{redstoneControl:0b,isRedstonePowered:0b,radiationLevel:0.0d,alternateComparator:0b,id:\"nuclearcraft:turbine_glass\"}"
+    },
+    "g:A": {
+      "nbt": "{isRedstonePowered:0b,bladeName:\"steel\",alternateComparator:0b,bladeExpansionCoefficient:1.4d,redstoneControl:0b,bladeEfficiency:1.0d,radiationLevel:0.0d,id:\"nuclearcraft:turbine_rotor_blade_steel\",bladeDir:2}"
+    },
+    "h:A": {
+      "nbt": "{isRedstonePowered:0b,bladeName:\"steel\",alternateComparator:0b,bladeExpansionCoefficient:1.4d,redstoneControl:0b,bladeEfficiency:1.0d,radiationLevel:0.0d,id:\"nuclearcraft:turbine_rotor_blade_steel\",bladeDir:1}"
+    },
+    "i:A": {
+      "nbt": "{redstoneControl:0b,isRedstonePowered:0b,radiationLevel:0.0d,alternateComparator:0b,id:\"nuclearcraft:turbine_rotor_shaft\"}"
+    },
+    "j:A": {
+      "nbt": "{redstoneControl:0b,isRedstonePowered:0b,radiationLevel:0.0d,alternateComparator:0b,id:\"nuclearcraft:turbine_controller\"}"
+    },
+    "k:A": {
+      "nbt": "{isRedstonePowered:0b,fluidConnection3:{sorption0:0},alternateComparator:0b,fluidConnection2:{sorption0:0},fluidConnection1:{sorption0:0},fluidConnection0:{sorption0:0},fluidConnection5:{sorption0:0},fluidConnection4:{sorption0:0},redstoneControl:0b,radiationLevel:0.0d,id:\"nuclearcraft:turbine_inlet\"}"
+    },
+    "a:B": {
+      "nbt": "{redstoneControl:0b,isRedstonePowered:0b,multiblockData:{bladeAngleArray:{float0:45.0f,float1:45.0f,float2:45.0f,float3:-45.0f,length:12,float8:45.0f,float9:-45.0f,float10:-45.0f,float4:-45.0f,float5:-45.0f,float11:-45.0f,float6:45.0f,float7:45.0f},energyStorage:{energy:0L,capacity:9600000L},isProcessing:0b,particleSpeedMult:0.04310344827586207d,basePowerPerMB:0.0d,expansionLevels:{},totalExpansionLevel:1.0d,bearingTension:0.0d,idealTotalExpansionLevel:1.0d,renderPosArray:{vector14:{floatx:-146.0f,floaty:74.0f,floatz:199.0f},vector12:{floatx:-146.0f,floaty:74.0f,floatz:197.0f},vector13:{floatx:-146.0f,floaty:74.0f,floatz:198.0f},vector10:{floatx:-146.0f,floaty:75.0f,floatz:198.0f},vector11:{floatx:-146.0f,floaty:75.0f,floatz:199.0f},length:15,vector1:{floatx:-146.0f,floaty:73.0f,floatz:198.0f},vector2:{floatx:-146.0f,floaty:73.0f,floatz:199.0f},vector0:{floatx:-146.0f,floaty:73.0f,floatz:197.0f},vector5:{floatx:-147.0f,floaty:74.0f,floatz:199.0f},vector6:{floatx:-145.0f,floaty:74.0f,floatz:197.0f},vector3:{floatx:-147.0f,floaty:74.0f,floatz:197.0f},vector4:{floatx:-147.0f,floaty:74.0f,floatz:198.0f},vector9:{floatx:-146.0f,floaty:75.0f,floatz:197.0f},vector7:{floatx:-145.0f,floaty:74.0f,floatz:198.0f},vector8:{floatx:-145.0f,floaty:74.0f,floatz:199.0f}},noBladeSets:0,rawPower:0.0d,spinUpMultiplier:1.0d,conductivity:0.0d,effectiveMaxLength:24,particleEffect:\"cloud\",rawMaxPower:0.0d,power:0.0d,rawBladeEfficiencies:{},logicID:\"turbine\",rawLimitPower:0.0d,isTurbineOn:0b,minBladeExpansionCoefficient:1.7976931348623157E308d,computerActivated:0b,flowDir:-1,angVel:0.0f,maxStatorExpansionCoefficient:4.9E-324d,shaftWidth:0,recipeInputRate:0,minStatorExpansionCoefficient:1.0d,bladeLength:0,shaftVolume:0,dynamoCoilCount:7,tanks1:{Empty:\"\",capacity:2400000},rotorAngle:0.0f,powerBonus:1.0d,bladePosArray:{length:12,pos0:[I;-146,73,197],pos1:[I;-146,73,198],pos2:[I;-146,73,199],pos11:[I;-146,75,199],pos3:[I;-147,74,197],pos10:[I;-146,75,198],pos8:[I;-145,74,199],pos9:[I;-146,75,197],pos4:[I;-147,74,198],pos5:[I;-147,74,199],pos6:[I;-145,74,197],pos7:[I;-145,74,198]},maxBladeExpansionCoefficient:1.0d,rotorEfficiency:0.0d,tanks0:{Empty:\"\",capacity:600000},logic:{},dynamoCoilCountOpposite:7,recipeInputRateFP:0.0d},radiationLevel:0.0d,alternateComparator:0b,id:\"nuclearcraft:turbine_casing\"}"
+    }
+  },
+  "shape": [
+    [
+      [
+        "a:A",
+        "a:A",
+        "a:A",
+        "a:A",
+        "a:A"
+      ],
+      [
+        "a:A",
+        "f:A",
+        "f:A",
+        "f:A",
+        "a:A"
+      ],
+      [
+        "a:A",
+        "f:A",
+        "f:A",
+        "f:A",
+        "a:A"
+      ],
+      [
+        "a:A",
+        "f:A",
+        "f:A",
+        "f:A",
+        "a:A"
+      ],
+      [
+        "a:A",
+        "a:A",
+        "a:A",
+        "a:A",
+        "a:A"
+      ]
+    ],
+    [
+      [
+        "a:A",
+        "b:A",
+        "c:A",
+        "b:A",
+        "a:A"
+      ],
+      [
+        "f:A",
+        "_",
+        "g:A",
+        "_",
+        "f:A"
+      ],
+      [
+        "f:A",
+        "_",
+        "g:A",
+        "_",
+        "f:A"
+      ],
+      [
+        "f:A",
+        "_",
+        "g:A",
+        "_",
+        "f:A"
+      ],
+      [
+        "a:A",
+        "b:A",
+        "c:A",
+        "b:A",
+        "a:A"
+      ]
+    ],
+    [
+      [
+        "a:A",
+        "c:A",
+        "d:A",
+        "c:A",
+        "a:A"
+      ],
+      [
+        "f:A",
+        "h:A",
+        "i:A",
+        "h:A",
+        "f:A"
+      ],
+      [
+        "f:A",
+        "h:A",
+        "i:A",
+        "h:A",
+        "f:A"
+      ],
+      [
+        "f:A",
+        "h:A",
+        "i:A",
+        "h:A",
+        "f:A"
+      ],
+      [
+        "a:A",
+        "c:A",
+        "d:A",
+        "c:A",
+        "a:A"
+      ]
+    ],
+    [
+      [
+        "a:A",
+        "k:A",
+        "c:A",
+        "b:A",
+        "a:A"
+      ],
+      [
+        "f:A",
+        "_",
+        "g:A",
+        "_",
+        "f:A"
+      ],
+      [
+        "f:A",
+        "_",
+        "g:A",
+        "_",
+        "j:A"
+      ],
+      [
+        "f:A",
+        "_",
+        "g:A",
+        "_",
+        "f:A"
+      ],
+      [
+        "a:A",
+        "e:A",
+        "c:A",
+        "b:A",
+        "a:A"
+      ]
+    ],
+    [
+      [
+        "a:B",
+        "a:A",
+        "a:A",
+        "a:A",
+        "a:A"
+      ],
+      [
+        "a:A",
+        "a:A",
+        "a:A",
+        "a:A",
+        "a:A"
+      ],
+      [
+        "a:A",
+        "a:A",
+        "a:A",
+        "a:A",
+        "a:A"
+      ],
+      [
+        "a:A",
+        "a:A",
+        "a:A",
+        "a:A",
+        "a:A"
+      ],
+      [
+        "a:A",
+        "a:A",
+        "a:A",
+        "a:A",
+        "a:A"
+      ]
+    ]
+  ]
+
+
+
+}
+
+
+
+
+

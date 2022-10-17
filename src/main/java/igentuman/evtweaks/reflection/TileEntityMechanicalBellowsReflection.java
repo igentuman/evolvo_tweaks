@@ -11,9 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.smeltery.tileentity.TileCasting;
-import slimeknights.tconstruct.smeltery.tileentity.TileCastingBasin;
 
 public class TileEntityMechanicalBellowsReflection {
 

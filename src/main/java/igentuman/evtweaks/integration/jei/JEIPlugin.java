@@ -18,7 +18,7 @@ public class JEIPlugin implements IModPlugin {
 
         //multiblocks
         registry.handleRecipes(MultiblockRecipe.class, recipe -> new MultiblocksRecipeCategory.Wrapper(recipe), MultiblocksRecipeCategory.UID);
-        registry.addRecipes(MultiblockRecipes.getRecipes(), MultiblocksRecipeCategory.UID);
+        registry.addRecipes(MultiblockRecipes.getAvaliableRecipes(), MultiblocksRecipeCategory.UID);
     }
 
     @Override

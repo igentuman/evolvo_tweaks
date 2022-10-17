@@ -1,11 +1,10 @@
 package igentuman.evtweaks.recipe;
 
-import igentuman.evtweaks.util.ItemHelper;
+import igentuman.evtweaks.util.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -15,9 +14,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
-import org.dave.compactmachines3.world.ProxyWorld;
-import org.dave.compactmachines3.world.data.provider.AbstractExtraTileDataProvider;
-import org.dave.compactmachines3.world.data.provider.ExtraTileDataProviderRegistry;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -67,6 +63,15 @@ public class MultiblockRecipe {
         this.referenceStacks = new HashMap<>();
     }
 
+    public boolean isValid()
+    {
+        for(ItemStack itemStack: getRequiredItemStacks()) {
+            if(itemStack == null) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public void addBlockReference(String ref, IBlockState state) {
         this.reference.put(ref, state);
@@ -105,7 +110,6 @@ public class MultiblockRecipe {
             if(referenceStacks.containsKey(ref)) {
                 result.add(referenceStacks.get(ref).copy());
             } else if(state.getBlock() == Blocks.REDSTONE_WIRE) {
-                // TODO: 1.13: We keep this in for historic reasons. Remove in 1.13
                 result.add(new ItemStack(Items.REDSTONE, count));
             } else {
                 if(referenceIgnoresMeta.getOrDefault(ref, false)) {

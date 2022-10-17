@@ -8,19 +8,42 @@ import java.util.Map;
 import com.google.gson.stream.JsonReader;
 import igentuman.evtweaks.EvTweaks;
 
+import igentuman.evtweaks.util.JarExtract;
+import igentuman.evtweaks.util.ResourceLoader;
 import igentuman.evtweaks.util.SerializationHelper;
-import org.dave.compactmachines3.utility.Logz;
-import org.dave.compactmachines3.utility.ResourceLoader;
 
 public class MultiblockRecipes {
     private static List<MultiblockRecipe> recipes = new ArrayList<>();
+
+    private static  List<MultiblockRecipe> avaliableRecipes = new ArrayList<>();
 
     public static List<MultiblockRecipe> getRecipes() {
         return recipes;
     }
 
+    public static List<MultiblockRecipe> getAvaliableRecipes() {
+        if(avaliableRecipes.size() < 1) {
+            for (MultiblockRecipe recipe: recipes) {
+                if(recipe.isValid()) {
+                    avaliableRecipes.add(recipe);
+                }
+            }
+        }
+        return avaliableRecipes;
+    }
+
     public static void init() {
         loadRecipes();
+        File evTweaks = new File("config", "evtweaks");
+        File recipeDirectory = new File("config/evtweaks", "recipes");
+        if(!recipeDirectory.exists()) {
+            if(!evTweaks.exists()) {
+                evTweaks.mkdir();
+            }
+            recipeDirectory.mkdir();
+            JarExtract.copy("assets/evtweaks/config/recipes", recipeDirectory);
+        }
+
     }
 
 
@@ -41,7 +64,7 @@ public class MultiblockRecipes {
             recipeDirectory.mkdir();
         }
         MultiblockRecipe recipe;
-        ResourceLoader loader = new ResourceLoader(EvTweaks.class, recipeDirectory, "assets/compactmachines3/config/recipes/");
+        ResourceLoader loader = new ResourceLoader(EvTweaks.class, recipeDirectory, "assets/evtweaks/config/recipes/");
         for(Map.Entry<String, InputStream> entry : loader.getResources().entrySet()) {
             String filename = entry.getKey();
             InputStream is = entry.getValue();
@@ -54,8 +77,6 @@ public class MultiblockRecipes {
             try {
                 recipe = SerializationHelper.GSON.fromJson(reader, MultiblockRecipe.class);
             } catch (NullPointerException e) {
-                Logz.error("Wrong multiblock recipe. "+ filename);
-                Logz.error(e.toString());
                 recipe = null;
             }
 

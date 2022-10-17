@@ -1,6 +1,5 @@
 package igentuman.evtweaks.recipe;
 
-
 import com.google.gson.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -10,7 +9,6 @@ import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
-import org.dave.compactmachines3.utility.Logz;
 
 import java.lang.reflect.Type;
 import java.util.Iterator;
@@ -22,22 +20,18 @@ public class MultiblockRecipeSerializer implements JsonSerializer<MultiblockReci
 
     public MultiblockRecipe deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         if (!json.isJsonObject()) {
-            Logz.info("Invalid recipe! Not a json object!", new Object[0]);
             return null;
         } else {
             JsonObject jsonRoot = json.getAsJsonObject();
             if (jsonRoot.has("input-types") && jsonRoot.has("shape")) {
                 if (!jsonRoot.has("name")) {
-                    Logz.info("Invalid recipe! Missing recipe name!", new Object[0]);
                     return null;
                 } else {
                     String name = jsonRoot.get("name").getAsString();
                     String label = jsonRoot.get("label").getAsString();
                     if (MultiblockRecipes.getRecipeByName(name) != null) {
-                        Logz.info("Duplicate recipe with name: %s", new Object[]{name});
                         return null;
                     } else if (jsonRoot.has("disabled") && jsonRoot.get("disabled").getAsBoolean()) {
-                        Logz.info("Recipe '%s' is disabled via its json file", new Object[]{name});
                         return null;
                     } else {
                         String nbtRaw;
@@ -51,14 +45,14 @@ public class MultiblockRecipeSerializer implements JsonSerializer<MultiblockReci
                                 Map.Entry<String, JsonElement> entry = (Map.Entry)var16.next();
                                 JsonObject data = ((JsonElement)entry.getValue()).getAsJsonObject();
                                 if (!data.has("id")) {
-                                    Logz.error("Missing id for source block", new Object[0]);
                                     return null;
                                 }
 
                                 String blockId = data.get("id").getAsString();
-                                Block sourceBlock = (Block)Block.REGISTRY.getObject(new ResourceLocation(blockId));
-                                if (sourceBlock == null) {
-                                    throw new RuntimeException("Invalid recipe! Unknown source block: \"" + blockId + "\"");
+                                ResourceLocation res = new ResourceLocation(blockId);
+                                Block sourceBlock = (Block)Block.REGISTRY.getObject(res);
+                                if (sourceBlock == null || !sourceBlock.getRegistryName().equals(res)) {
+                                    return null;
                                 }
 
                                 int meta = data.has("meta") ? data.get("meta").getAsInt() : 0;
@@ -90,7 +84,6 @@ public class MultiblockRecipeSerializer implements JsonSerializer<MultiblockReci
                                                     NBTTagCompound stackNbt = JsonToNBT.getTagFromJson(nbtRaw);
                                                     stackStack.setTagCompound(stackNbt);
                                                 } catch (NBTException var33) {
-                                                    Logz.warn("Unable to read NBT tag from miniaturization recipe: %s (exception=%s)", new Object[]{nbtRaw, var33});
                                                 }
                                             }
 
@@ -108,7 +101,6 @@ public class MultiblockRecipeSerializer implements JsonSerializer<MultiblockReci
                                     Map.Entry<String, JsonElement> entry = (Map.Entry)var44.next();
                                     JsonObject data = ((JsonElement)entry.getValue()).getAsJsonObject();
                                     if (!data.has("nbt")) {
-                                        Logz.error("Missing nbt for variant", new Object[0]);
                                         return null;
                                     }
 
@@ -118,7 +110,6 @@ public class MultiblockRecipeSerializer implements JsonSerializer<MultiblockReci
                                         NBTTagCompound variantNBT = JsonToNBT.getTagFromJson(rawNbtJson);
                                         result.addBlockVariation((String)entry.getKey(), variantNBT);
                                     } catch (NBTException var32) {
-                                        Logz.warn("Unable to read NBT tag from miniaturiazation recipe: %s (exception=%s)", new Object[]{rawNbtJson, var32});
                                         return null;
                                     }
                                 }
@@ -176,7 +167,6 @@ public class MultiblockRecipeSerializer implements JsonSerializer<MultiblockReci
                     }
                 }
             } else {
-                Logz.info("Invalid recipe! Missing section shape and/or input-types!", new Object[0]);
                 return null;
             }
         }

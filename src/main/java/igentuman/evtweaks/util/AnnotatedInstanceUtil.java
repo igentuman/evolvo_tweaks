@@ -12,8 +12,6 @@ import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.discovery.ASMDataTable.ASMData;
 
 
-
-
 public class AnnotatedInstanceUtil {
     public static ASMDataTable asmData;
 

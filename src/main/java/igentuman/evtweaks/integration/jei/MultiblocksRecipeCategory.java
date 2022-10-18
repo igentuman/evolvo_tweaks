@@ -4,34 +4,40 @@ import igentuman.evtweaks.ModInfo;
 import igentuman.evtweaks.recipe.MultiblockRecipe;
 import igentuman.evtweaks.render.RecipeRenderManager;
 import mezz.jei.api.IGuiHelper;
+import mezz.jei.api.IRecipesGui;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocus;
+import mezz.jei.api.recipe.IIngredientType;
 import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import mezz.jei.gui.ingredients.GuiIngredient;
+import mezz.jei.gui.ingredients.GuiItemStackGroup;
+import mezz.jei.gui.recipes.RecipeLayout;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Vector3d;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
-import org.dave.compactmachines3.misc.RenderTickCounter;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-public class MultiblocksRecipeCategory implements IRecipeCategory, ITooltipCallback<ItemStack> {
+public class MultiblocksRecipeCategory implements IRecipeCategory<MultiblocksRecipeCategory.Wrapper>, ITooltipCallback<ItemStack> {
     public static final String UID = ModInfo.MODID + "_multiblocks";
     private final String localizedName;
     private final IDrawableStatic background;
     private final IDrawableStatic slotDrawable;
+    public static boolean zoom = false;
+    public IRecipeLayout layout;
 
     public MultiblocksRecipeCategory(IGuiHelper guiHelper) {
         localizedName = I18n.format(ModInfo.MODID+".jei.category.multiblocks");
@@ -75,7 +81,7 @@ public class MultiblocksRecipeCategory implements IRecipeCategory, ITooltipCallb
 
     @Override
     public void drawExtras(Minecraft minecraft) {
-
+        if(zoom) return;
         slotDrawable.draw(minecraft, 19 * 0, 0);
         slotDrawable.draw(minecraft, 19 * 1, 0);
         slotDrawable.draw(minecraft, 19 * 2, 0);
@@ -99,7 +105,12 @@ public class MultiblocksRecipeCategory implements IRecipeCategory, ITooltipCallb
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
+    public void setRecipe(IRecipeLayout recipeLayout, Wrapper recipeWrapper, IIngredients ingredients) {
+        recipeWrapper.recipe.setCategory(this);
+        layout = recipeLayout;
+        if(zoom) {
+            return;
+        }
         recipeLayout.getItemStacks().init(0, true, 19 * 0, 0);
         recipeLayout.getItemStacks().init(1, true, 19 * 1, 0);
         recipeLayout.getItemStacks().init(2, true, 19 * 2, 0);
@@ -132,7 +143,7 @@ public class MultiblocksRecipeCategory implements IRecipeCategory, ITooltipCallb
 
     @Override
     public void onTooltip(int slotIndex, boolean input, ItemStack ingredient, List<String> tooltip) {
-
+        if(zoom) return;
         String last = tooltip.get(tooltip.size()-1);
         tooltip.remove(tooltip.size()-1);
         if(slotIndex >= 0 && slotIndex <= 17) {
@@ -145,6 +156,7 @@ public class MultiblocksRecipeCategory implements IRecipeCategory, ITooltipCallb
         public final MultiblockRecipe recipe;
         private final List<ItemStack> input = new ArrayList<>();
         public int layers;
+        public IIngredients ingredients;
 
         public Wrapper(MultiblockRecipe recipe) {
             this.recipe = recipe;
@@ -171,32 +183,58 @@ public class MultiblocksRecipeCategory implements IRecipeCategory, ITooltipCallb
                         layers = recipe.getHeight();
                     }
                     recipe.setLevels(layers);
-                } else {
-                    zoom = !zoom;
-
+                } else if(mouseButton == 1) {
+                    td =- td;
                 }
                 return true;
             }
             return false;
         }
 
+        Map<Integer,? extends IGuiIngredient<ItemStack>> guiIngredients = new HashMap<>();
+
         @Override
         public void getIngredients(IIngredients ingredients) {
+            this.ingredients = ingredients;
             ingredients.setInputs(ItemStack.class, input);
             ingredients.setOutput(ItemStack.class, this.recipe.getTargetStack());
         }
 
+        public float td = 1f;
+        public float ry = 0.5f;
+        private int ticks = 90;
+
+        private boolean isMouseOver(int mouseX, int mouseY, int width, int height){
+            return 0 < mouseX && mouseX < width &&  0 < mouseY && mouseY < height;
+        }
+
+        public static int xMouse = 0;
+        public static int yMouse = 0;
+        public static float angle;
+        public static float scale;
+        public static Vector3d start = new Vector3d();
+
         @Override
         public void drawInfo(Minecraft mc, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
             GlStateManager.pushMatrix();
-            GlStateManager.translate(0F, 0F, 216.5F);
-
-            mc.fontRenderer.drawString(recipe.getLabel(), 180-mc.fontRenderer.getStringWidth(recipe.getLabel()), -13, 0x444444);
-            mc.fontRenderer.drawString(recipe.getDimensionsString(), 180-mc.fontRenderer.getStringWidth(recipe.getDimensionsString()), 153, 0x444444);
-
+            GlStateManager.translate(0F, 0F, 1.5F);
             GlStateManager.popMatrix();
 
-            float angle = RenderTickCounter.renderTicks * 45.0f / 128.0f;
+            if(!zoom) {
+                mc.fontRenderer.drawString(recipe.getLabel(), 180 - mc.fontRenderer.getStringWidth(recipe.getLabel()), -13, 0x444444);
+                mc.fontRenderer.drawString(recipe.getDimensionsString(), 180 - mc.fontRenderer.getStringWidth(recipe.getDimensionsString()), 153, 0x444444);
+                mc.fontRenderer.drawString("CTRL - Zoom", 19, 153, 0x444444);
+            }
+            angle = ticks * 45.0f / 128.0f;
+/*            if(isMouseOver(mouseX, mouseY, recipeWidth, recipeHeight)) {
+                //do tracing
+                xMouse = (int) (mouseX/16*scale);
+                yMouse = (int) ((recipeHeight-mouseY)/16*scale);
+            } else {
+                xMouse = 0;
+                yMouse = 0;
+            }*/
+            ticks+=td;
             TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
             textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
             textureManager.getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
@@ -222,13 +260,13 @@ public class MultiblocksRecipeCategory implements IRecipeCategory, ITooltipCallb
             GlStateManager.pushMatrix();
 
             // Center on recipe area
-            GlStateManager.translate((float)(recipeWidth / 2), (float)(recipeHeight / 2), 100.0f);
+            GlStateManager.translate((float)(recipeWidth / 2), (float)(recipeHeight / 2), 255.0f);
 
             // Shift it a bit down so one can properly see 3d
             GlStateManager.rotate(-25.0f, 1.0f, 0.0f, 0.0f);
 
             // Rotate per our calculated time
-            GlStateManager.rotate(angle, 0.0f, 0.5f, 0.0f);
+            GlStateManager.rotate(angle, 0.0f, ry, 0.0f);
 
             // Scale down to gui scale
             GlStateManager.scale(16.0f, -16.0f, 16.0f);
@@ -243,9 +281,12 @@ public class MultiblocksRecipeCategory implements IRecipeCategory, ITooltipCallb
             // We have big recipes, we need to adjust the size accordingly.
             int maxDiff = Math.max(Math.max(diffZ + 1, diffX), diffY+3) + 1;
 
-            float scale = 1.0f / ((float)maxDiff / 7.0f);
+            scale = 1.0f / ((float)maxDiff / 7.0f);
+            recipe.getCategory().layout.getItemStacks().set(ingredients);
+            recipe.getCategory().setRecipe(recipe.getCategory().layout, this, ingredients);
             if(zoom) {
-                // scale *= 2;
+                 scale *= 2;
+                 recipe.getCategory().layout.getItemStacks().getGuiIngredients().clear();
             }
             GlStateManager.enableCull();
             GlStateManager.scale(scale, scale, scale);
@@ -263,6 +304,14 @@ public class MultiblocksRecipeCategory implements IRecipeCategory, ITooltipCallb
                 renderWireframe = true;
                 GlStateManager.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
             }
+            zoom = false;
+            if(GuiScreen.isCtrlKeyDown()) {
+               zoom = true;
+
+            }
+
+
+            MultiblocksRecipeCategory.zoom = zoom;
             recipe.setLevels(layers);
             RecipeRenderManager.instance.renderRecipe(recipe, 0.0f, layers);
 

@@ -1,5 +1,6 @@
 package igentuman.evtweaks.recipe;
 
+import igentuman.evtweaks.integration.jei.MultiblocksRecipeCategory;
 import igentuman.evtweaks.util.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -23,6 +24,10 @@ import java.util.Map;
 
 public class MultiblockRecipe {
     private String name;
+
+
+
+    private MultiblocksRecipeCategory category;
 
     public String getLabel() {
         return label;
@@ -361,5 +366,14 @@ public class MultiblockRecipe {
 
     public List<BlockPos> getShapeAsBlockPosList() {
         return mapAsBlockPos;
+    }
+
+    public void setCategory(MultiblocksRecipeCategory cat)
+    {
+        category = cat;
+    }
+
+    public MultiblocksRecipeCategory getCategory() {
+        return category;
     }
 }

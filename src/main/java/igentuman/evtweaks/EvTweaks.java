@@ -1,5 +1,7 @@
 package igentuman.evtweaks;
 
+import blusunrize.immersiveengineering.common.util.IEVillagerHandler;
+import igentuman.evtweaks.integration.crafttweaker.TradeFilter;
 import igentuman.evtweaks.proxy.ISidedProxy;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
@@ -40,6 +42,8 @@ public class EvTweaks {
 
     MinecraftForge.EVENT_BUS.register(new RegistryHandler());
     MinecraftForge.EVENT_BUS.register(this);
+    IEVillagerHandler.initIEVillagerTrades();
+    new TradeFilter();
   }
 
   @EventHandler
@@ -47,6 +51,7 @@ public class EvTweaks {
     logger.info("Starting Initialization.");
     proxy.init(event);
     ConfigManager.sync(MODID, Config.Type.INSTANCE);
+
   }
 
   @SubscribeEvent

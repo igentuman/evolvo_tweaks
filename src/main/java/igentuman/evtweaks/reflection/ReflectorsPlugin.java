@@ -40,6 +40,11 @@ public class ReflectorsPlugin extends Reflectors.FMLLoadingPluginAdapter
             return Reflectors.reflectClass(basicClass, transformedName, TileMolecularAssemblerReflection.class.getName());
         }
 
+        //assembler slowdown
+        if (transformedName.equals("jeresources.jei.villager.VillagerCategory")) {
+            return Reflectors.reflectClass(basicClass, transformedName, VillagerCategoryReflection.class.getName());
+        }
+        
         return basicClass;
     }
 }

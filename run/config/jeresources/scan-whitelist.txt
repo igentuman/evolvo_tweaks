@@ -1,3 +1,0 @@
-minecraft:coal_ore
-minecraft:iron_ore
-minecraft:gold_ore

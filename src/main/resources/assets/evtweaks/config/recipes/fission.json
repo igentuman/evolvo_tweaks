@@ -2,6 +2,7 @@
   "name": "fission",
   "label": "Fission Reactor",
 
+  "target-item": "nuclearcraft:solid_fission_controller",
 
   "input-types": {
     "a": {

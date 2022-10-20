@@ -1,2 +1,5 @@
 tile.mechanical_forgehammer.name=Mechanical Forge Hammer
 evtweaks.jei.category.multiblocks=Multiblocks Examples
+evtweaks.jei.category.worldgen=World Generation
+evtweaks.wg.minY=Best Height: %s
+evtweaks.wg.world=%s

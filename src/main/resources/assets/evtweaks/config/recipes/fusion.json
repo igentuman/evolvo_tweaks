@@ -1,6 +1,7 @@
 {
   "name": "fusion",
   "label": "Fusion Reactor",
+  "target-item": "bfr:reactor",
 
   "input-types": {
     "a": {

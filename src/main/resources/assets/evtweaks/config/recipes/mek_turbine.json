@@ -2,6 +2,7 @@
   "name": "mek_turbine",
   "label": "Industrial Turbine",
 
+  "target-item": "mekanismgenerators:turbineblade",
 
   "input-types": {
     "a": {

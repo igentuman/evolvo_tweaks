@@ -34,9 +34,23 @@ public class MultiblockRecipeSerializer implements JsonSerializer<MultiblockReci
                     } else if (jsonRoot.has("disabled") && jsonRoot.get("disabled").getAsBoolean()) {
                         return null;
                     } else {
+                        ItemStack targetStack = ItemStack.EMPTY;
                         String nbtRaw;
+                        if (jsonRoot.has("target-item")) {
+                            nbtRaw = jsonRoot.get("target-item").getAsString();
+                            Item targetItem = (Item)Item.REGISTRY.getObject(new ResourceLocation(nbtRaw));
+                            if (targetItem != null) {
+                                int meta = 0;
+                                if(jsonRoot.has("target-item-meta")) {
+                                    meta = jsonRoot.get("target-item-meta").getAsInt();
+                                }
+                                targetStack = new ItemStack(targetItem,1, meta);
+                            }
+                        }
+
 
                             MultiblockRecipe result = new MultiblockRecipe(name);
+                            result.setTargetStack(targetStack);
                             JsonObject jsonReferenceMap = jsonRoot.get("input-types").getAsJsonObject();
                             Iterator var16 = jsonReferenceMap.entrySet().iterator();
 

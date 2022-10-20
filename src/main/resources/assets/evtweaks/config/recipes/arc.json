@@ -1,7 +1,7 @@
 {
   "name": "arc",
   "label": "Arc Smeltery",
-
+  "target-item": "immersiveengineering:tool",
   "input-types": {
     "a": {
       "id": "ic2:resource",

@@ -1,6 +1,7 @@
 {
   "name": "mixer",
   "label": "Mixer",
+  "target-item": "immersiveengineering:tool",
 
   "input-types": {
     "a": {

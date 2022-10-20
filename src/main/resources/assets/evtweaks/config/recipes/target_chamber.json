@@ -2,6 +2,7 @@
   "name": "target_chamber",
 
   "label": "Basic Target Chamber",
+  "target-item": "qmd:target_chamber_controller",
 
   "input-types": {
     "a": {

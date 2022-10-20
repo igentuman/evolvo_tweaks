@@ -2,6 +2,7 @@
   "name": "fermenter",
   "label": "Fermenter",
 
+  "target-item": "immersiveengineering:tool",
 
   "input-types": {
     "a": {

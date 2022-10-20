@@ -50,14 +50,14 @@ public class MultiblockRecipe {
     private Map<String, Boolean> referenceIgnoresMeta;
     private Map<String, NBTTagCompound> referenceTags;
     private Map<String, ItemStack> referenceStacks;
-
+    private ItemStack targetStack;
     private BlockPos minPos;
     private BlockPos maxPos;
-
-
-
     private int count;
 
+    public void setTargetStack(ItemStack targetStack) {
+        this.targetStack = targetStack;
+    }
 
     public MultiblockRecipe(String name) {
         this.name = name;
@@ -260,7 +260,7 @@ public class MultiblockRecipe {
     }
 
     public ItemStack getTargetStack() {
-        return ItemHelper.getStackFromString("immersiveengineering:tool",0);
+        return targetStack;
     }
 
     public int levels;

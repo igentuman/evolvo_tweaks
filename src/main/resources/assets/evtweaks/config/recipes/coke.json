@@ -1,6 +1,7 @@
 {
   "name": "coke",
   "label": "Coke Oven",
+  "target-item": "immersiveengineering:tool",
 
   "input-types": {
     "a": {

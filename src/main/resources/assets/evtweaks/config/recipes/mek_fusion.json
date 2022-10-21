@@ -1,31 +1,31 @@
 {
-  "name": "fusion",
+  "name": "mek_fusion",
   "label": "Fusion Reactor",
-  "target-item": "bfr:reactor",
+  "target-item": "mekanism:reactor",
 
   "input-types": {
     "a": {
-      "id": "bfr:reactor",
+      "id": "mekanism:reactor",
       "meta": 1
     },
     "b": {
-      "id": "bfr:reactorglass",
+      "id": "mekanism:reactorglass",
       "meta": 0
     },
     "c": {
-      "id": "bfr:reactor",
+      "id": "mekanism:reactor",
       "meta": 3
     },
     "d": {
-      "id": "bfr:reactor",
+      "id": "mekanism:reactor",
       "meta": 2
     },
     "e": {
-      "id": "bfr:reactor",
+      "id": "mekanism:reactor",
       "meta": 0
     },
     "f": {
-      "id": "bfr:reactorglass",
+      "id": "mekanism:reactorglass",
       "meta": 1
     }
   },

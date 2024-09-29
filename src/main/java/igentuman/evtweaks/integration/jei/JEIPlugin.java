@@ -1,5 +1,6 @@
 package igentuman.evtweaks.integration.jei;
 
+import igentuman.evtweaks.ModConfig;
 import igentuman.evtweaks.recipe.MultiblockRecipe;
 import igentuman.evtweaks.recipe.MultiblockRecipes;
 import jeresources.entry.WorldGenEntry;
@@ -24,10 +25,12 @@ public class JEIPlugin implements IModPlugin {
     @Override
     public void register(IModRegistry registry) {
         INSTANCE = this;
-        //multiblocks
-        registry.handleRecipes(MultiblockRecipe.class, recipe -> new MultiblocksRecipeCategory.Wrapper(recipe), MultiblocksRecipeCategory.UID);
-        registry.addRecipes(MultiblockRecipes.getAvaliableRecipes(), MultiblocksRecipeCategory.UID);
-        if(Loader.isModLoaded("jeresources")) {
+        if(ModConfig.tweaks.enable_multiblocks_jei_category) {
+            //multiblocks
+            registry.handleRecipes(MultiblockRecipe.class, recipe -> new MultiblocksRecipeCategory.Wrapper(recipe), MultiblocksRecipeCategory.UID);
+            registry.addRecipes(MultiblockRecipes.getAvaliableRecipes(), MultiblocksRecipeCategory.UID);
+        }
+        if(Loader.isModLoaded("jeresources") && ModConfig.tweaks.enable_multiblocks_jei_category) {
             registry.handleRecipes(WorldGenEntry.class, recipe -> new WorldGenRecipeCategory.Wrapper(recipe), WorldGenRecipeCategory.UID);
             registry.addRecipes(WorldGenRegistry.getInstance().getWorldGen(), WorldGenRecipeCategory.UID);
         }
@@ -36,9 +39,11 @@ public class JEIPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry) {
         final IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
-        //multiblocks
-        registry.addRecipeCategories(new MultiblocksRecipeCategory(guiHelper));
-        if(Loader.isModLoaded("jeresources")) {
+        if(ModConfig.tweaks.enable_multiblocks_jei_category) {
+            //multiblocks
+            registry.addRecipeCategories(new MultiblocksRecipeCategory(guiHelper));
+        }
+        if(Loader.isModLoaded("jeresources") && ModConfig.tweaks.enable_multiblocks_jei_category) {
             registry.addRecipeCategories(new WorldGenRecipeCategory(guiHelper));
         }
     }

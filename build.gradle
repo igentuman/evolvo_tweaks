@@ -36,6 +36,9 @@ configurations {
 }
 
 repositories {
+    flatDir {
+        dirs 'libs'
+    }
     mavenLocal()
     mavenCentral()
     maven {
@@ -64,7 +67,7 @@ dependencies {
     compileOnly "org.jetbrains:annotations:17.0.0"
     deobfCompile "mekanism:Mekanism:${mekanism_version}"
     deobfProvided "nuclearcraft-overhauled:NuclearCraft:${nuclearcraft_version}:${mc_version}"
-
+    implementation name: 'extrautils2', version: "1.12-1.9.9"
     deobfCompile "curse.maven:just-enough-resources-jer-240630:2728585"
     deobfCompile "curse.maven:rocky-tweaks-265461:3591441"
     deobfCompile "curse.maven:compact-machines-224218:2707509"

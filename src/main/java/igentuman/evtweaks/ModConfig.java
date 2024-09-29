@@ -7,6 +7,24 @@ public class  ModConfig {
     public static Tweaks tweaks = new Tweaks();
 
     public static class Tweaks {
+        @Config.Name("xu2_angel_ring_max_flight_time")
+        @Config.Comment({
+                "How long player can fly with angel ring",
+        })
+        public int xu2_angel_ring_max_flight_time = 60;
+
+        @Config.Name("enable_world_gen_jei_category")
+        @Config.Comment({
+                "Adds category in JEI for worldgen"
+        })
+        public boolean enable_world_gen_jei_category = true;
+
+        @Config.Name("enable_multiblocks_jei_category")
+        @Config.Comment({
+                "Adds category in JEI for multiblocks"
+        })
+        public boolean enable_multiblocks_jei_category = true;
+
         @Config.Name("ae2_molecular_transformer_slowdown")
         @Config.Comment({
                 "Value Range 1-10"

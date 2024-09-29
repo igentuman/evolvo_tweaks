@@ -24,6 +24,14 @@ public class ReflectorsPlugin extends Reflectors.FMLLoadingPluginAdapter
         if (transformedName.equals("mysticalmechanics.tileentity.TileEntityAxle")) {
             return Reflectors.reflectClass(basicClass, transformedName, TileEntityAxleReflection.class.getName());
         }
+        //powerpack
+        if (transformedName.equals("blusunrize.immersiveengineering.common.items.ItemPowerpack")) {
+            return Reflectors.reflectClass(basicClass, transformedName, ItemPowerpackReflection.class.getName());
+        }
+        //angel ring
+        if (transformedName.equals("com.rwtema.extrautils2.items.ItemAngelRing")) {
+            return Reflectors.reflectClass(basicClass, transformedName, ItemAngelRingReflection.class.getName());
+        }
 
         //bellows expand
         if (transformedName.equals("decivex.mech_crafting.mechanical_bellows.TileEntityMechanicalBellows")) {
@@ -40,7 +48,7 @@ public class ReflectorsPlugin extends Reflectors.FMLLoadingPluginAdapter
             return Reflectors.reflectClass(basicClass, transformedName, TileMolecularAssemblerReflection.class.getName());
         }
 
-        //assembler slowdown
+        //vilager trades
         if (transformedName.equals("jeresources.jei.villager.VillagerCategory")) {
             return Reflectors.reflectClass(basicClass, transformedName, VillagerCategoryReflection.class.getName());
         }

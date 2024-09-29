@@ -24,6 +24,10 @@ public class ReflectorsPlugin extends Reflectors.FMLLoadingPluginAdapter
         if (transformedName.equals("mysticalmechanics.tileentity.TileEntityAxle")) {
             return Reflectors.reflectClass(basicClass, transformedName, TileEntityAxleReflection.class.getName());
         }
+        //ic2
+        if (transformedName.equals("ic2.core.energy.grid.EnergyNetGlobal")) {
+            return Reflectors.reflectClass(basicClass, transformedName, EnergyNetGlobalReflection.class.getName());
+        }
         //powerpack
         if (transformedName.equals("blusunrize.immersiveengineering.common.items.ItemPowerpack")) {
             return Reflectors.reflectClass(basicClass, transformedName, ItemPowerpackReflection.class.getName());
